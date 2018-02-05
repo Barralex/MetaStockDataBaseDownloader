@@ -2,28 +2,37 @@
 using System.ComponentModel;
 using System.Net;
 using System.Windows.Forms;
-using System.IO;
-using System.IO.Compression;
 
 namespace MetaStockDataBaseDownloader
 {
     public partial class Form1 : Form
     {
 
-        public string filename { get; set; }
+        private FileManagement FileManagement;
 
-        WebClient client;
+        private string filename;
+
+        private WebClient client;
 
         public Form1()
         {
             InitializeComponent();
+            FileManagement = new FileManagement();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            DeleteFolderContent();
+            listBox1.Items.Add(string.Format("Deleting folder content"));
+            FileManagement.DeleteFolderContent();
             DownloadFile();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            button2.Enabled = false;
+            CancelDownload();
         }
 
         private void DownloadFile()
@@ -89,49 +98,23 @@ namespace MetaStockDataBaseDownloader
 
             listBox1.Items.Add(string.Format("Download completed at {0}", DateTime.Now));
 
-            UnZipFile();
+            listBox1.Items.Add(string.Format("Unzipping downloaded file {0}", filename));
+
+            FileManagement.UnZipFile();
+
+            listBox1.Items.Add(string.Format("Unzipping completed"));
+
+            listBox1.Items.Add(string.Format("Deleting downloaded file"));
+
+            FileManagement.DeleteFile(filename);
+
+            listBox1.Items.Add(string.Format("Deleting file {0}", filename));
 
         }
 
         private void CancelDownload()
         {
             client.CancelAsync();
-        }
-
-        private void UnZipFile()
-        {
-            listBox1.Items.Add(string.Format("Unzipping downloaded file {0}", filename));
-
-            string zipPath = @"C:\MetaStock Data\Acciones\IOL_Metastock.zip";
-            string extractPath = @"C:\MetaStock Data\Acciones";
-
-            ZipFile.ExtractToDirectory(zipPath, extractPath);
-
-            listBox1.Items.Add(string.Format("Unzipping completed"));
-
-            listBox1.Items.Add(string.Format("Deleting downloaded file"));
-
-            DeleteFile();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = true;
-            button2.Enabled = false;
-            CancelDownload();
-        }
-
-        private void DeleteFolderContent()
-        {
-            listBox1.Items.Add(string.Format("Deleting folder content"));
-            Array.ForEach(Directory.GetFiles(@"C:\MetaStock Data\Acciones"), File.Delete);
-        }
-
-        private void DeleteFile()
-        {
-            listBox1.Items.Add(string.Format("Deleting file {0}", filename));
-            File.Delete(string.Format(@"C:\MetaStock Data\Acciones\{0}", filename));
         }
 
     }
