@@ -1,34 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MetaStockDataBaseDownloader
 {
-    public class FileManagement
+    public static class FileManagement
     {
 
-        private string zipPath = @"C:\MetaStock Data\Acciones\IOL_Metastock.zip";
-        private string extractPath = @"C:\MetaStock Data\Acciones";
-
-        public FileManagement() { }
-
-        public void UnZipFile()
+        public static void UnZipFile()
         {
-            ZipFile.ExtractToDirectory(zipPath, extractPath);
+            ZipFile.ExtractToDirectory(ConfigurationManager.AppSettings["LocalStorageZipPath"],
+                ConfigurationManager.AppSettings["LocalStoragePath"]);
         }
 
-        public void DeleteFolderContent()
+        public static void DeleteFolderContent()
         {
-            Array.ForEach(Directory.GetFiles(extractPath), File.Delete);
+            Array.ForEach(Directory.GetFiles(ConfigurationManager.AppSettings["LocalStoragePath"]), File.Delete);
         }
 
-        public void DeleteFile(string filename)
+        public static void CreateStorageFolder()
         {
-            File.Delete(string.Format(@"C:\MetaStock Data\Acciones\{0}", filename));
+            Directory.CreateDirectory(ConfigurationManager.AppSettings["LocalStoragePath"]);
+        }
+
+        public static void DeleteFile(string filename)
+        {
+            File.Delete($"{ConfigurationManager.AppSettings["LocalStoragePath"]}\\{filename}");
+        }
+
+        public static string GetFilename(string uri)
+        {
+            return Path.GetFileName(new Uri(uri).LocalPath);
         }
 
     }

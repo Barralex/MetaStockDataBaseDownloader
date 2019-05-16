@@ -1,6 +1,6 @@
 ﻿namespace MetaStockDataBaseDownloader
 {
-    partial class Form1
+    partial class Downloader
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Downloader));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Download_btn = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Cancel_btn = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,15 +59,15 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // button1
+            // Download_btn
             // 
-            this.button1.Location = new System.Drawing.Point(308, 178);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Donwload";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Download_btn.Location = new System.Drawing.Point(308, 178);
+            this.Download_btn.Name = "Download_btn";
+            this.Download_btn.Size = new System.Drawing.Size(75, 23);
+            this.Download_btn.TabIndex = 1;
+            this.Download_btn.Text = "Download";
+            this.Download_btn.UseVisualStyleBackColor = true;
+            this.Download_btn.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox1
             // 
@@ -77,30 +77,30 @@
             this.listBox1.Size = new System.Drawing.Size(447, 134);
             this.listBox1.TabIndex = 2;
             // 
-            // button2
+            // Cancel_btn
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(389, 178);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Cancel Download";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Cancel_btn.Enabled = false;
+            this.Cancel_btn.Location = new System.Drawing.Point(389, 178);
+            this.Cancel_btn.Name = "Cancel_btn";
+            this.Cancel_btn.Size = new System.Drawing.Size(75, 23);
+            this.Cancel_btn.TabIndex = 3;
+            this.Cancel_btn.Text = "Cancel Download";
+            this.Cancel_btn.UseVisualStyleBackColor = true;
+            this.Cancel_btn.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Form1
+            // Downloader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 240);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Cancel_btn);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Download_btn);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Downloader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Metastock database Downloader";
             this.statusStrip1.ResumeLayout(false);
@@ -114,10 +114,10 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Download_btn;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Cancel_btn;
     }
 }
 
